@@ -19,7 +19,7 @@ export default function handler(req, res) {
     }
 
     // Execute the query to retrieve the data column from the sensordata table
-    const query = 'SELECT data FROM sensordata ORDER BY id DESC LIMIT 20';
+    const query = 'SELECT data, time FROM sensordata ORDER BY id DESC LIMIT 20';
     connection.query(query, (error, results) => {
       if (error) {
         console.error('Error retrieving data:', error);
@@ -30,11 +30,21 @@ export default function handler(req, res) {
       // Close the database connection
       connection.end();
 
-      // Extract the data values from the result rows and parse each JSON string
-      const jsonData = results.map((row) => JSON.parse(row.data));
-
-      // Send the JSON array as the API response
-      res.status(200).json(jsonData);
+      // Extract the data and time values from the result rows
+      const data = results.map((row) => row.data);
+      const time = results.map((row) => row.time);
+    
+      // Construct the response object with data and time properties
+      const responseData = results.map((row) => {
+        const parsedData = JSON.parse(row.data);
+        return {
+          data: parsedData,
+          time: row.time,
+        };
+      });
+    
+      // Send the response as plain text
+      res.status(200).json(responseData);
     });
   });
 }
