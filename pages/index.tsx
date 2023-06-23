@@ -9,7 +9,7 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:3001/api/getalotsensordata')
+    fetch('https://yxuanproject.com/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
