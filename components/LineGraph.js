@@ -4,6 +4,7 @@ import { Line } from 'react-chartjs-2';
 ChartJS.register(...registerables);
 
 export default function LineGraph(props) {
+
     const chartData = {
         labels: props.time,
         datasets: [
@@ -15,9 +16,24 @@ export default function LineGraph(props) {
           },
         ],
       };
+      const options = {
+        scales: {
+          y: {
+            suggestedMin: Math.min(...props.data), // Adjust as needed
+            suggestedMax: Math.max(...props.data),
+            beginAtZero: true,
+            ticks: {
+              maxTicksLimit: props.maxTicksLimit,
+              callback: function (value, index, values) {
+                return value.toFixed(props.dp) + props.unit; 
+              },
+            },
+          },
+        },
+      };
     return (
         <div>
-            <Line data={chartData} />
+            <Line data={chartData} options={options}/>
         </div>
 
     );
