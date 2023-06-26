@@ -9,15 +9,15 @@ export default function DateRangePicker() {
   const [selectedFromDate, setSelectedFromDate] = useState(dayjs());
   const [selectedToDate, setSelectedToDate] = useState(dayjs());
 
-  const handleFromDateChange = (date) => {
+  const handleFromDateChange = (date:any) => {
     setSelectedFromDate(date);
   };
 
-  const handleToDateChange = (date) => {
+  const handleToDateChange = (date:any) => {
     setSelectedToDate(date);
   };
 
-  const shouldDisableDate = (date) => {
+  const shouldDisableDate = (date:any) => {
     if (selectedFromDate) {
       // Disable dates before the selected "From" date and dates after the selected "From" date
       return date.isBefore(selectedFromDate, 'day') || date.isAfter(selectedFromDate, 'day');
