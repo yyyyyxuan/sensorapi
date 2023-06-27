@@ -42,7 +42,7 @@ export default function DateRangePicker() {
       toDate: selectedToDate.format('YYYY-MM-DD'),
     };
   
-    const response = await fetch('http://localhost:3001/api/getdatedata', {
+    const response = await fetch('http://yxuanproject.com/api/getdatedata', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
