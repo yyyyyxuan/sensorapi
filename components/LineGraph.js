@@ -21,12 +21,18 @@ export default function LineGraph(props) {
           y: {
             suggestedMin: Math.min(...props.data), // Adjust as needed
             suggestedMax: Math.max(...props.data),
-            beginAtZero: true,
+            beginAtZero: false,
             ticks: {
               maxTicksLimit: props.maxTicksLimit,
               callback: function (value, index, values) {
                 return value.toFixed(props.dp) + props.unit; 
               },
+            },
+          },
+          x: {
+            ticks: {
+              maxTicksLimit: 5 // Adjust the number of desired intermediate ticks
+
             },
           },
         },

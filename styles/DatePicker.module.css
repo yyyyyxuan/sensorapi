@@ -1,0 +1,25 @@
+.container {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pickerContainer {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .submitButton{
+    background-color: black;
+    
+    
+  }
+  .submitButton:hover {
+    background-color: #333333; /* Lighter shade of black on hover */
+  }
+
+  .submitButtonContainer {
+    margin-top: 10px;
+  }
+  

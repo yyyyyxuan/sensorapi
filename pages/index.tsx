@@ -1,11 +1,11 @@
 "use client";
 
-import Graph from '../components/Graph';
+import DateRangePicker from '../components/DatePicker';
 export default function Home(){
   return(
     <div>
 
-      <Graph />
+      <DateRangePicker/>
 
     </div>
 
