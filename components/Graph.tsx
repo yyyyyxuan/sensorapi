@@ -3,6 +3,8 @@
 import  styles from '../styles/Graph.module.css'
 import { useState, useEffect } from 'react';
 import { Chart as ChartJS, DateAdapter, registerables } from 'chart.js';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Typography } from '@mui/material';
 interface GraphProps {
   jsonData: any;
 }
@@ -16,7 +18,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('https://yxuanproject.com/api/getalotsensordata')
+    fetch('http://localhost:3001/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -38,7 +40,17 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   }, [jsonData]);
 
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return 
+  <Typography sx={{ display: "flex", alignItems: "center" }}>
+  <b>Loading</b>
+  <CircularProgress color="inherit" 
+  
+  style={{
+    padding:'10px',
+    width:'20px',
+    height:'20px'}} />
+  </Typography>
+  ;
   if (data.length === 0) return <p>No data available</p>;
 
   
@@ -57,7 +69,6 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   return(
   <>
-
   <div className={styles.row}>
     <div className={styles.rowitem}>
       <LineGraph time={time} data={PM1} dp="0" unit=" ug/m3" label="PM1" />

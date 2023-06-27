@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Button } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/DatePicker.module.css';
 import dayjs from 'dayjs';
@@ -11,6 +12,7 @@ import Graph from './Graph';
 export default function DateRangePicker() {
   const [selectedFromDate, setSelectedFromDate] = useState(dayjs());
   const [selectedToDate, setSelectedToDate] = useState(dayjs());
+  const [isLoading, setLoading] = useState(false);
   const [jsonData, setJsonData] = useState<any | null>(null);
 
   const handleFromDateChange = (date:any) => {
@@ -19,11 +21,6 @@ export default function DateRangePicker() {
 
   const handleToDateChange = (date:any) => {
     setSelectedToDate(date);
-  };
-
-  const shouldDisableFromDate = (date:any) => {
-    const today = dayjs().startOf('day');
-    return date.isAfter(today, 'day');
   };
 
   const shouldDisableToDate = (date:any) => {
@@ -35,14 +32,14 @@ export default function DateRangePicker() {
 
 
   const handleSubmit = async (e:any) => {
+    setLoading(true);
     e.preventDefault();
-    console.log('clicked');
     const data = {
       fromDate: selectedFromDate.format('YYYY-MM-DD'),
       toDate: selectedToDate.format('YYYY-MM-DD'),
     };
   
-    const response = await fetch('https://yxuanproject.com/api/getdatedata', {
+    const response = await fetch('http://localhost:3001/api/getdatedata', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -52,6 +49,7 @@ export default function DateRangePicker() {
     
     const jsonResponse = await response.json();
     setJsonData(jsonResponse);
+    setLoading(false);
 
   };
 
@@ -81,18 +79,30 @@ export default function DateRangePicker() {
         </LocalizationProvider>
       </div>
       <div className={styles.submitButtonContainer}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSubmit}
-          size="large"
-          className={styles.submitButton}
-          disabled={isSubmitDisabled}
-          endIcon={<SendIcon />
-        }
-        >
-          Submit
-        </Button>
+      <Button
+  variant="contained"
+  color="primary"
+  onClick={handleSubmit}
+  className={styles.submitButton}
+  disabled={isSubmitDisabled}
+  endIcon={
+    isLoading ? (
+      <div style={{ width: '20px', height: '20px' }}>
+        <CircularProgress color="inherit" style={{ width: '100%', height: '100%', display: 'flex' }} />
+      </div>
+    ) : (
+      <SendIcon />
+    )
+  }
+  style={{
+    backgroundColor: 'black',
+  }}
+>
+  Submit
+</Button>
+
+
+
       </div>
     </div>
 
