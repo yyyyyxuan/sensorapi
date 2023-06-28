@@ -20,7 +20,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
     console.log(isLoading);
     setLoading(true);
     console.log(isLoading);
-    fetch('https://yxuanproject.com/api/getalotsensordata')
+    fetch('http://localhost:3001/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
