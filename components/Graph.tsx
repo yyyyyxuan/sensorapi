@@ -4,7 +4,12 @@ import { useState, useEffect } from 'react';
 import { Chart as ChartJS, DateAdapter, registerables } from 'chart.js';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Typography } from '@mui/material';
-
+import dayjs from 'dayjs';
+import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(timezone);
+dayjs.extend(utc);
+dayjs.tz.setDefault('Asia/Singapore');
 interface GraphProps {
   jsonData: any;
 }
@@ -59,7 +64,10 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   
   const temp = data.map((item) => item.data.temp);
-  const time = data.map((item) => new Date(item.time).toLocaleString('en-SG', { timeZone: 'Asia/Singapore' }));
+  const time = data.map((item) => {
+    const dateTime = dayjs(item.time).format('DD/MM/YYYY, h:mm:ss A');
+    return dateTime;
+  });
   const PM1 = data.map((item) => item.data.PM1);
   const PM25 = data.map((item) => item.data.PM25);
   const PM10 = data.map((item) => item.data.PM10);
