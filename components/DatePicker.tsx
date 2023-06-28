@@ -14,7 +14,7 @@ export default function DateRangePicker() {
   const [selectedToDate, setSelectedToDate] = useState(dayjs());
   const [isLoading, setLoading] = useState(false);
   const [jsonData, setJsonData] = useState({});
-
+  
   const handleFromDateChange = (date:any) => {
     setSelectedFromDate(date);
   };
@@ -58,7 +58,7 @@ export default function DateRangePicker() {
     <>
     <div className={styles.container}>
       <div className={styles.pickerContainer}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
           <div>
             <DatePicker
               label="From"
