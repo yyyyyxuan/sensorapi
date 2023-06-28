@@ -19,7 +19,7 @@ export default function handler(req, res) {
     }
 
     // Execute the query to retrieve the data column from the sensordata table
-    const query = 'SELECT * FROM ( SELECT * FROM sensordata ORDER BY id DESC LIMIT 10 ) AS subquery ORDER BY id ASC;';
+    const query = 'SELECT * FROM ( SELECT DATE_ADD(time, INTERVAL 8 HOUR) AS converted_time, data, time, id FROM sensordata ORDER BY id DESC LIMIT 10 ) AS subquery ORDER BY id ASC;';
     connection.query(query, (error, results) => {
       if (error) {
         console.error('Error retrieving data:', error);
