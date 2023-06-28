@@ -56,11 +56,14 @@ const LineGraph = (props) => {
           },
           pinch: {
             enabled: true,
+            sensitivity:0.1,
           },
           mode: 'xy',
         },
       },
     },
+
+
   };
 
   return (
