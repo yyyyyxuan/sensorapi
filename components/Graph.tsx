@@ -16,11 +16,12 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const [isLoading, setLoading] = useState(false);
   const [updatedData, setUpdatedData] = useState<any[]>([]);
 //http://localhost:3001/api/getalotsensordata
+//https://yxuanproject.com/api/getalotsensordata
   useEffect(() => {
     console.log(isLoading);
     setLoading(true);
     console.log(isLoading);
-    fetch('http://localhost:3001/api/getalotsensordata')
+    fetch('https://yxuanproject.com/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
