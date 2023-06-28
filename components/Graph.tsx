@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Chart as ChartJS, DateAdapter, registerables } from 'chart.js';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Typography } from '@mui/material';
-import dayjs from 'dayjs';
+
 interface GraphProps {
   jsonData: any;
 }
@@ -56,12 +56,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   ;
   if (data.length === 0) return <div className={styles.loadingDiv}><p><b>No data available</b></p></div>;
-  const timeZone = 'Asia/Singapore';
-  const date = new Date(data[0]);
-  const formattedDate = new Intl.DateTimeFormat('en-SG', { timeZone })
-    .format(date);
-  
-  console.log(formattedDate);
+
   
   const temp = data.map((item) => item.data.temp);
   const time = data.map((item) => new Date(item.time).toLocaleString('en-SG', { timeZone: 'Asia/Singapore' }));
