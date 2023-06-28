@@ -8,6 +8,8 @@ import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/DatePicker.module.css';
 import dayjs from 'dayjs';
 import Graph from './Graph';
+import utcPlugin from 'dayjs/plugin/utc';
+dayjs.extend(utcPlugin);
 
 export default function DateRangePicker() {
   const [selectedFromDate, setSelectedFromDate] = useState(dayjs());
