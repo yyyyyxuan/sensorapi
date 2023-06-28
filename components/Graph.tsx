@@ -80,7 +80,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   
   <div className={styles.row}>
     <div className={styles.rowitem}>
-      <LineGraph time={time} data={PM1} dp="0" unit=" ug/m3" label="PM1" />
+      <LineGraph  time={time} data={PM1} dp="0" unit=" ug/m3" label="PM1" />
     </div>
     <div className={styles.rowitem}>
       <LineGraph time={time} data={PM25} dp="0" unit=" ppm" label="PM2.5" />

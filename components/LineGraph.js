@@ -26,6 +26,7 @@ const LineGraph = (props) => {
   };
 
   const options = {
+
     scales: {
       y: {
         suggestedMin: Math.min(...props.data),
@@ -40,7 +41,7 @@ const LineGraph = (props) => {
       },
       x: {
         ticks: {
-          maxTicksLimit: 5,
+          maxTicksLimit: window.innerWidth < 700 ? 3 : 5,
         },
       },
     },
@@ -56,12 +57,13 @@ const LineGraph = (props) => {
           },
           pinch: {
             enabled: true,
-            sensitivity:0.1,
+            sensitivity:0.05,
           },
           mode: 'xy',
         },
       },
     },
+    
 
 
   };

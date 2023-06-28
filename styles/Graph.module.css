@@ -7,26 +7,26 @@
   
   .rowitem {
     width: 100%;
-    max-width: 800px;
     height: 400px;
+    max-width: 800px;
     padding: 25px;
     margin: 1px;
     border: 1px solid #ccc;
   }
-  
   .loadingDiv {
     justify-content: center;
     align-items: center;
     display: flex;
     padding: 20px;
   }
+
+
   @media only screen and (max-width: 480px) {
     .rowitem {
-        width: 100%;
-
-        height: 100%;
-        padding: 25px;
-        margin: 5px;
-
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+      margin: 5px;
     }
   }
+  
