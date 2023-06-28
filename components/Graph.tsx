@@ -68,6 +68,10 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
     const singaporeDateTime = dayjs(item.time).utcOffset(8).format('DD/MM/YYYY, h:mm:ss A');
     return singaporeDateTime;
   });
+  const time2 = data.map((item) => {
+    const dateTime = dayjs(item.time).format('DD/MM/YYYY, h:mm:ss A');
+    return dateTime;
+  });
   const PM1 = data.map((item) => item.data.PM1);
   const PM25 = data.map((item) => item.data.PM25);
   const PM10 = data.map((item) => item.data.PM10);
@@ -79,6 +83,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const CO2 = data.map((item) => item.data.CO2);
   const VOC = data.map((item) => item.data.VOC);
   console.log(time);
+  console.log(time2);
   return(
   <>
   
