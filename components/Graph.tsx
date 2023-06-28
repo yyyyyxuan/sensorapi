@@ -17,9 +17,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
   useEffect(() => {
-    console.log(isLoading);
     setLoading(true);
-    console.log(isLoading);
     fetch('https://yxuanproject.com/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
@@ -60,7 +58,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   
   const temp = data.map((item) => item.data.temp);
-  const time = data.map((item) => new Date(item.time).toLocaleString());
+  const time = data.map((item) => new Date(item.time).toLocaleString('en-SG', { timeZone: 'Asia/Singapore' }));
   const PM1 = data.map((item) => item.data.PM1);
   const PM25 = data.map((item) => item.data.PM25);
   const PM10 = data.map((item) => item.data.PM10);
