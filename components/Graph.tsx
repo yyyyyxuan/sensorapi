@@ -70,7 +70,6 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const NO2 = data.map((item) => item.data.NO2);
   const CO2 = data.map((item) => item.data.CO2);
   const VOC = data.map((item) => item.data.VOC);
-  console.log(data)
   return(
   <>
   
