@@ -4,10 +4,6 @@ import { useState, useEffect } from 'react';
 import { Chart as ChartJS, DateAdapter, registerables } from 'chart.js';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Typography } from '@mui/material';
-import utcPlugin from 'dayjs/plugin/utc';
-import dayjs from 'dayjs';
-dayjs.extend(utcPlugin);
-
 
 interface GraphProps {
   jsonData: any;
@@ -63,10 +59,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   
   const temp = data.map((item) => item.data.temp);
-  const time = data.map((item) => {
-    const dateTime = dayjs(item.time).utcOffset(8).format('DD/MM/YYYY, h:mm:ss A');
-    return dateTime;
-  });
+  const time = data.map((item) => new Date(item.time).toLocaleString('en-SG', { timeZone: 'Asia/Singapore' }));
   const PM1 = data.map((item) => item.data.PM1);
   const PM25 = data.map((item) => item.data.PM25);
   const PM10 = data.map((item) => item.data.PM10);
@@ -77,6 +70,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const NO2 = data.map((item) => item.data.NO2);
   const CO2 = data.map((item) => item.data.CO2);
   const VOC = data.map((item) => item.data.VOC);
+  console.log(time);
   return(
   <>
   
