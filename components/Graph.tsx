@@ -5,6 +5,8 @@ import { Chart as ChartJS, DateAdapter, registerables } from 'chart.js';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
+
+
 interface GraphProps {
   jsonData: any;
 }
@@ -59,7 +61,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   
   const temp = data.map((item) => item.data.temp);
-  const time2 = data.map((item) => {
+  const time = data.map((item) => {
     const dateTime = dayjs(item.time).format('DD/MM/YYYY, h:mm:ss A');
     return dateTime;
   });
@@ -74,7 +76,6 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const CO2 = data.map((item) => item.data.CO2);
   const VOC = data.map((item) => item.data.VOC);
   console.log(time);
-  console.log(time2);
   return(
   <>
   
