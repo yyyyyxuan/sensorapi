@@ -65,7 +65,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   
   const temp = data.map((item) => item.data.temp);
   const time = data.map((item) => {
-    const singaporeDateTime = dayjs(item.time).utcOffset(8).format('DD/MM/YYYY, h:mm:ss A');
+    const singaporeDateTime = dayjs.utc(item.time).tz('Asia/Singapore').format('DD/MM/YYYY, h:mm:ss A');
     return singaporeDateTime;
   });
   const time2 = data.map((item) => {
