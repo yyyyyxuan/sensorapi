@@ -1,6 +1,7 @@
 "use client";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+
 ChartJS.register(...registerables);
 
 export default function LineGraph(props) {
@@ -12,7 +13,7 @@ export default function LineGraph(props) {
             label: props.label,
             data: props.data,
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(75, 160, 255)',
           },
         ],
       };

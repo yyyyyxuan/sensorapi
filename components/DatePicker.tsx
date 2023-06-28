@@ -13,7 +13,7 @@ export default function DateRangePicker() {
   const [selectedFromDate, setSelectedFromDate] = useState(dayjs());
   const [selectedToDate, setSelectedToDate] = useState(dayjs());
   const [isLoading, setLoading] = useState(false);
-  const [jsonData, setJsonData] = useState<any | null>(null);
+  const [jsonData, setJsonData] = useState({});
 
   const handleFromDateChange = (date:any) => {
     setSelectedFromDate(date);
@@ -38,8 +38,8 @@ export default function DateRangePicker() {
       fromDate: selectedFromDate.format('YYYY-MM-DD'),
       toDate: selectedToDate.format('YYYY-MM-DD'),
     };
-  
-    const response = await fetch('https://yxuanproject.com/api/getdatedata', {
+  //http://localhost:3001/api/getdatedata
+    const response = await fetch('http://localhost:3001/api/getdatedata', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -79,30 +79,24 @@ export default function DateRangePicker() {
         </LocalizationProvider>
       </div>
       <div className={styles.submitButtonContainer}>
-      <Button
-  variant="contained"
-  color="primary"
-  onClick={handleSubmit}
-  className={styles.submitButton}
-  disabled={isSubmitDisabled}
-  endIcon={
-    isLoading ? (
-      <div style={{ width: '20px', height: '20px' }}>
-        <CircularProgress color="inherit" style={{ width: '100%', height: '100%', display: 'flex' }} />
-      </div>
-    ) : (
-      <SendIcon />
-    )
-  }
-  style={{
-    backgroundColor: 'black',
-  }}
->
-  Submit
-</Button>
-
-
-
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          className={styles.submitButton}
+          disabled={isSubmitDisabled}
+          endIcon={
+            isLoading ? (
+              <div style={{ width: '20px', height: '20px' }}>
+                <CircularProgress color="inherit" style={{ width: '100%', height: '100%', display: 'flex' }} />
+              </div>
+            ) : (
+              <SendIcon />
+            )
+          }
+          >
+          Submit
+        </Button>
       </div>
     </div>
 

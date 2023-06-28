@@ -15,10 +15,12 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const [data, setData] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(false);
   const [updatedData, setUpdatedData] = useState<any[]>([]);
-
+//http://localhost:3001/api/getalotsensordata
   useEffect(() => {
+    console.log(isLoading);
     setLoading(true);
-    fetch('https://yxuanproject.com/api/getalotsensordata')
+    console.log(isLoading);
+    fetch('http://localhost:3001/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -41,17 +43,20 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
 
   if (isLoading) return 
-  <Typography sx={{ display: "flex", alignItems: "center" }}>
-  <b>Loading</b>
-  <CircularProgress color="inherit" 
-  
-  style={{
-    padding:'10px',
-    width:'20px',
-    height:'20px'}} />
-  </Typography>
+  <div className={styles.loadingDiv}>
+    <Typography sx={{ display: "flex", alignItems: "center" }}>
+      <b>Loading</b>
+      <CircularProgress color="inherit" 
+      
+      style={{
+        padding:'10px',
+        width:'20px',
+        height:'20px'}} />
+    </Typography>
+  </div>
+
   ;
-  if (data.length === 0) return <p>No data available</p>;
+  if (data.length === 0) return <div className={styles.loadingDiv}><p><b>No data available</b></p></div>;
 
   
   const temp = data.map((item) => item.data.temp);
@@ -69,6 +74,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   return(
   <>
+  
   <div className={styles.row}>
     <div className={styles.rowitem}>
       <LineGraph time={time} data={PM1} dp="0" unit=" ug/m3" label="PM1" />

@@ -8,4 +8,14 @@
 .rowitem {
     width: 800px;
     height: 400px;
+    padding: 15px;
   }
+
+
+.loadingDiv {
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    padding: 20px;
+
+}
