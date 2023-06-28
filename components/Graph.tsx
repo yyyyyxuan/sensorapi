@@ -58,7 +58,11 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 
   
   const temp = data.map((item) => item.data.temp);
-  const time = data.map((item) => new Date(item.time).toLocaleString('en-SG', { timeZone: 'Asia/Singapore' }));
+  const time = data.map((item) => {
+    const dateTime = new Date(item.time);
+    const localTime = dateTime.toLocaleString('en-SG'); // Use system's timezone
+    return localTime;
+  });
   const PM1 = data.map((item) => item.data.PM1);
   const PM25 = data.map((item) => item.data.PM25);
   const PM10 = data.map((item) => item.data.PM10);
