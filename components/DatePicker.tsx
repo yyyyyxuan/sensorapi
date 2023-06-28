@@ -40,7 +40,7 @@ export default function DateRangePicker() {
     };
   //http://localhost:3001/api/getdatedata
   //https://yxuanproject.com/api/getdatedata
-    const response = await fetch('http://localhost:3001/api/getdatedata', {
+    const response = await fetch('https://yxuanproject.com/api/getdatedata', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
