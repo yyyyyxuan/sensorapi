@@ -1,6 +1,7 @@
 import '../styles/global.css';
 import { Inter } from 'next/font/google'
 import NavBar from '../components/NavBar'
+import Footer from '../components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 function App({ Component, pageProps }) {
   return(
@@ -12,6 +13,7 @@ function App({ Component, pageProps }) {
          `}</style>
       <NavBar/>
       <Component {...pageProps} />
+      <Footer/>
     </>
   ) 
   
