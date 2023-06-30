@@ -20,9 +20,8 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
   useEffect(() => {
-    console.log("fetching data");
     setLoading(true);
-    fetch('https://yxuanproject.com/api/getalotsensordata')
+    fetch('http://localhost:3001/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -44,18 +43,23 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   }, [jsonData]);
 
 
-  if (isLoading) return 
-  <div className={styles.loadingDiv}>
-    <Typography sx={{ display: "flex", alignItems: "center" }}>
-      <b>Loading</b>
-      <CircularProgress color="inherit" 
-      
-      style={{
-        padding:'10px',
-        width:'20px',
-        height:'20px'}} />
-    </Typography>
-  </div>
+  if (isLoading) {
+    return (
+      <div className={styles.loadingDiv}>
+        <Typography sx={{ display: "flex", alignItems: "center" }}>
+          <b>Loading</b>
+          <CircularProgress
+            color="inherit"
+            style={{
+              padding: "10px",
+              width: "20px",
+              height: "20px"
+            }}
+          />
+        </Typography>
+      </div>
+    );
+  }
 
   ;
   if (data.length === 0) return <div className={styles.loadingDiv}><p><b>No data available</b></p></div>;
@@ -78,6 +82,9 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const VOC = data.map((item) => item.data.VOC);
   return(
     <>
+      
+
+
         <div className={styles.row}>
             <div className={styles.rowitem}>
             <LineGraph  time={time} data={PM1} dp="0" unit=" ug/m3" label="PM1" options={{ maintainAspectRatio: false }} />

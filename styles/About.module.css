@@ -1,28 +1,35 @@
 .mainheader{
     margin:25px;
-  
     display: flex;
 }
-.envcontainer{
+
+.aboutcontainer{
     margin: 30px;
     padding-bottom: 10px;
 
-}
 
+}
 .envsenimage{
+    
     text-align: center;
     display: inline-block;
     vertical-align: top;
+    
 
 }
-.envsentext{
- 
+.image {
+    object-fit: contain;
 }
+
+
 .systemarch{
-    margin: 30px;
+    padding-top: 10px;
     padding-bottom: 10px;
 
 }
-.systemarchtext{
-
-}
+@media screen and (max-width: 768px) {
+    .image {
+      width: 100%;
+      height: auto;
+    }
+  }
