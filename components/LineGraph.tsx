@@ -67,7 +67,7 @@ const LineGraph = (props:any) => {
               },
               pinch: {
                 enabled: true,
-                sensitivity: 0.05,
+                sensitivity: 0.01,
               },
               mode: 'xy',
             },

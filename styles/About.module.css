@@ -1,0 +1,28 @@
+.mainheader{
+    margin:25px;
+  
+    display: flex;
+}
+.envcontainer{
+    margin: 30px;
+    padding-bottom: 10px;
+
+}
+
+.envsenimage{
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+
+}
+.envsentext{
+ 
+}
+.systemarch{
+    margin: 30px;
+    padding-bottom: 10px;
+
+}
+.systemarchtext{
+
+}
