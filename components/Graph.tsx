@@ -20,6 +20,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
   useEffect(() => {
+    console.log("fetching data");
     setLoading(true);
     fetch('https://yxuanproject.com/api/getdatedata')
       .then((res) => res.json())
