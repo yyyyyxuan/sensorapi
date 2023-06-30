@@ -1,19 +1,28 @@
 .mainheader{
-    margin:25px;
+    margin-left: 15px;
+    margin-bottom: 15px;
     display: flex;
+    
 }
-
+.envcontainer{
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    margin-bottom: 10px;
+}
 .aboutcontainer{
     margin: 30px;
     padding-bottom: 10px;
 
-
+}
+.envsentext{
+    padding:15px;
 }
 .envsenimage{
     
     text-align: center;
     display: inline-block;
     vertical-align: top;
+    
     
 
 }
@@ -25,6 +34,8 @@
 .systemarch{
     padding-top: 10px;
     padding-bottom: 10px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 
 }
 @media screen and (max-width: 768px) {

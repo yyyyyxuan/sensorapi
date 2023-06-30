@@ -21,7 +21,7 @@ export default function About() {
             }}>ZPHS01B Multi-in-one Air Quality Monitoring Sensor Module</b><br/>
           
           </div>
-          <div>
+          <div style={{padding: '15px'}}>
             <b>Target Gases:</b>
             <ul>
               <li>CO2</li>
@@ -48,8 +48,8 @@ export default function About() {
               <Image src="/assets/systemarch.png" alt="systemarch" width={528} height={449} className={styles.image} style={{objectFit: "contain"}}/>
             </div>
             <div className={styles.systemarchtext}>
-              <b>System architecture | Data handling</b>
-              <p>
+              <b style={{padding: '15px'}}>System architecture | Data handling</b>
+              <p style={{padding: '15px'}}>
                 Robustel R1511 router runs a script that will send the command bytes to the sensor module and receive the response.<br/>
                 The response is processed and sent to a web server via HTTP post request.<br/>
                 A converter is required to convert the UART output of the sensor module to RS232 for the router to communicate.

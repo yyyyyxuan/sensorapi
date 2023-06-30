@@ -131,7 +131,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
             <LineGraph time={time} data={O3} dp="2" unit=" ppm" label="O3" />
             </div>
         </div>
-        <div className={styles.row}>
+        <div className={styles.row} style={{marginBottom:'25px'}}>
             <div className={styles.rowitem}>
             <LineGraph time={time} data={NO2} dp="2" unit=" ppm" label="NO2" />
             </div>
