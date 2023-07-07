@@ -1,10 +1,10 @@
 import mysql from 'mysql';
 
 const dbConfig = {
-  host: '217.21.74.1',
-  user: 'u896730304_internuser',
-  password: 'Password123',
-  database: 'u896730304_sensordb',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PW,
+  database: process.env.DB_NAME,
 };
 
 export default function handler(req, res) {
