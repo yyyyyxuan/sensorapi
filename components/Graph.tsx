@@ -6,7 +6,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import LineGraph from './LineGraph';
+import utc from 'dayjs/plugin/utc';
 
+dayjs.extend(utc);
 interface GraphProps {
   jsonData: any;
 }
@@ -67,7 +69,7 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   
   const temp = data.map((item) => item.data.temp);
   const time = data.map((item) => {
-    const dateTime = dayjs(item.time).format('DD/MM/YYYY, h:mm:ss A');
+    const dateTime = dayjs(item.time).utcOffset(8).format('DD/MM/YYYY, h:mm:ss A');
     return dateTime;
   });
   const PM1 = data.map((item) => item.data.PM1);
