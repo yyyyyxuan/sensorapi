@@ -35,10 +35,11 @@ export default function DateRangePicker() {
   const handleSubmit = async (e:any) => {
     setLoading(true);
     e.preventDefault();
-    const fromDateFormatted = selectedFromDate.subtract(9, 'hour');
+    const fromDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 00:00');
+    const toDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 23:59');
     const data = {
-      fromDate: selectedFromDate.format('YYYY-MM-DD'),
-      toDate: selectedToDate.format('YYYY-MM-DD'),
+      fromDate: fromDateFormatted,
+      toDate: toDateFormatted,
     };
   //http://localhost:3001/api/getdatedata
   //https://yxuanproject.com/api/getdatedata
