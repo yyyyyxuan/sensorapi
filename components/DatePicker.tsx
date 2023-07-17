@@ -20,11 +20,11 @@ export default function DateRangePicker() {
   const [jsonData, setJsonData] = useState({});
   
   const handleFromDateChange = (date:any) => {
-    setSelectedFromDate(date.startOf('day'));
+    setSelectedFromDate(date);
   };
 
   const handleToDateChange = (date:any) => {
-    setSelectedToDate(date.endOf('day'));
+    setSelectedToDate(date);
   };
 
   const shouldDisableToDate = (date:any) => {
@@ -38,8 +38,9 @@ export default function DateRangePicker() {
   const handleSubmit = async (e:any) => {
     setLoading(true);
     e.preventDefault();
-    const fromDateUtc = selectedFromDate.utc().format('YYYY-MM-DD HH:mm');
-    const toDateUtc = selectedToDate.utc().format('YYYY-MM-DD HH:mm');
+    const fromDateUtc = selectedFromDate.startOf('day').utc().format('YYYY-MM-DD HH:mm');
+    const toDateUtc = selectedToDate.endOf('day').utc().format('YYYY-MM-DD HH:mm');
+    console.log(fromDateUtc, toDateUtc);
     const data = {
       fromDate: fromDateUtc,
       toDate: toDateUtc
