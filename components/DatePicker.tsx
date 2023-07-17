@@ -36,8 +36,8 @@ export default function DateRangePicker() {
     setLoading(true);
     e.preventDefault();
     const data = {
-      fromDate: selectedFromDate.format('YYYY-MM-DD'),
-      toDate: selectedToDate.format('YYYY-MM-DD'),
+      fromDate: selectedFromDate.format('YYYY-MM-DD 00:00'),
+      toDate: selectedToDate.format('YYYY-MM-DD 23:59'),
     };
   //http://localhost:3001/api/getdatedata
   //https://yxuanproject.com/api/getdatedata
