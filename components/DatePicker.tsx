@@ -37,7 +37,7 @@ export default function DateRangePicker() {
     e.preventDefault();
     const fromDateFormatted = selectedFromDate.subtract(9, 'hour');
     const data = {
-      fromDate: fromDateFormatted.format('YYYY-MM-DD HH:mm'),
+      fromDate: selectedFromDate.format('YYYY-MM-DD HH:mm'),
       toDate: selectedToDate.format('YYYY-MM-DD'),
     };
   //http://localhost:3001/api/getdatedata
