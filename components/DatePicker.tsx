@@ -8,20 +8,23 @@ import SendIcon from '@mui/icons-material/Send';
 import styles from '../styles/DatePicker.module.css';
 import dayjs from 'dayjs';
 import Graph from './Graph';
+import utc from 'dayjs/plugin/utc';
 
+dayjs.extend(utc);
 
 export default function DateRangePicker() {
+  
   const [selectedFromDate, setSelectedFromDate] = useState(dayjs());
   const [selectedToDate, setSelectedToDate] = useState(dayjs());
   const [isLoading, setLoading] = useState(false);
   const [jsonData, setJsonData] = useState({});
   
   const handleFromDateChange = (date:any) => {
-    setSelectedFromDate(date);
+    setSelectedFromDate(date.startOf('day'));
   };
 
   const handleToDateChange = (date:any) => {
-    setSelectedToDate(date);
+    setSelectedToDate(date.endOf('day'));
   };
 
   const shouldDisableToDate = (date:any) => {
@@ -35,13 +38,11 @@ export default function DateRangePicker() {
   const handleSubmit = async (e:any) => {
     setLoading(true);
     e.preventDefault();
-    const fromDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 00:00');
-    const toDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 23:59');
-    console.log(selectedFromDate,"  ",selectedToDate);
-    console.log(fromDateFormatted,"  ",toDateFormatted);
+    const fromDateUtc = selectedFromDate.utc().format('YYYY-MM-DD HH:mm');
+    const toDateUtc = selectedToDate.utc().format('YYYY-MM-DD HH:mm');
     const data = {
-      fromDate: fromDateFormatted,
-      toDate: toDateFormatted,
+      fromDate: fromDateUtc,
+      toDate: toDateUtc
     };
   //http://localhost:3001/api/getdatedata
   //https://yxuanproject.com/api/getdatedata
