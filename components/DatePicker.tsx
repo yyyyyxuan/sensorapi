@@ -38,7 +38,7 @@ export default function DateRangePicker() {
   const handleSubmit = async (e:any) => {
     setLoading(true);
     e.preventDefault();
-    const fromDateUtc = selectedFromDate.startOf('day').utc().format('YYYY-MM-DD HH:mm');
+    const fromDateUtc = selectedFromDate.startOf('day').utc().format('YYYY-MM-DD');
     const toDateUtc = selectedToDate.format('YYYY-MM-DD 23:59:59');
     const data = {
       fromDate: fromDateUtc,
