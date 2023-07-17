@@ -39,7 +39,7 @@ export default function DateRangePicker() {
     setLoading(true);
     e.preventDefault();
     const fromDateUtc = selectedFromDate.startOf('day').utc().format('YYYY-MM-DD HH:mm');
-    const toDateUtc = selectedToDate.endOf('day').utc().format('YYYY-MM-DD HH:mm');
+    const toDateUtc = selectedToDate.format('YYYY-MM-DD 23:59:59');
     const data = {
       fromDate: fromDateUtc,
       toDate: toDateUtc
