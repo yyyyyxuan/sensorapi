@@ -21,22 +21,28 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const [updatedData, setUpdatedData] = useState<any[]>([]);
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
-  useEffect(() => {
-    setLoading(true);
+useEffect(() => {
+  const fetchData = () => {
     fetch('https://yxuanproject.com/api/getalotsensordata')
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
-        setLoading(false);
-
+        if (data.length > 0) {
+          setData(data);
+          setLoading(false);
+        } else {
+          // If data is not available yet, wait for some time and poll again
+          setTimeout(fetchData, 3000); 
+        }
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
         setLoading(false);
       });
-  }, []);
+  };
 
-
+  setLoading(true);
+  fetchData();
+}, []);
   useEffect(() => {
     setUpdatedData(jsonData);
     if (updatedData !== null) {
