@@ -4,7 +4,8 @@ import mysql from 'mysql';
 export default async function handler(req, res) {
   // Get the fromDate and toDate from the request body
   const { fromDate, toDate } = req.body;
-
+  // Convert the fromDate to the database timezone 
+  const adjustedFromDate = moment(fromDate).subtract(8, 'hours').format('YYYY-MM-DD');
   // Create a MySQL connection
   const connection = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -18,7 +19,7 @@ export default async function handler(req, res) {
   connection.connect();
 
   // Query the sensordata table with the fromDate and toDate
-  const query = `SELECT data,time FROM sensordata WHERE DATE(time) BETWEEN '${fromDate}' AND '${toDate}'`;
+  const query = `SELECT data,time FROM sensordata WHERE DATE(time) BETWEEN '${adjustedFromDate}' AND '${toDate}'`;
   connection.query(query, (error, results) => {
     if (error) {
     console.error('Error retrieving data:', error);
