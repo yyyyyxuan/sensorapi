@@ -17,7 +17,8 @@ export default async function handler(req, res) {
   connection.connect();
 
   // Query the sensordata table with the fromDate and toDate
-  const query = `SELECT data,time FROM sensordata WHERE DATE(time) BETWEEN '${fromDate}' AND '${toDate}'`;
+  const query =   `SELECT data, time FROM sensordata WHERE time >= '${fromDate}' AND time <= '${toDate}'`;
+
   connection.query(query, (error, results) => {
     if (error) {
     console.error('Error retrieving data:', error);
