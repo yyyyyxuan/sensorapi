@@ -37,6 +37,8 @@ export default function DateRangePicker() {
     e.preventDefault();
     const fromDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 00:00');
     const toDateFormatted = selectedFromDate.subtract(8, 'hour').format('YYYY-MM-DD 23:59');
+    console.log(selectedFromDate,"  ",selectedToDate);
+    console.log(fromDateFormatted,"  ",toDateFormatted);
     const data = {
       fromDate: fromDateFormatted,
       toDate: toDateFormatted,
