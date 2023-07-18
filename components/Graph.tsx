@@ -70,6 +70,7 @@ useEffect(() => {
   }
 
   ;
+  console.log(data.length);
   if (data.length === 0) return <div className={styles.loadingDiv}><p><b>No data available</b></p></div>;
 
   
