@@ -21,26 +21,32 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const [updatedData, setUpdatedData] = useState<any[]>([]);
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
-useEffect(() => {
-  const fetchData = () => {
-    fetch('https://yxuanproject.com/api/getalotsensordata')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.length > 0) {
-          setData(data);
-          setLoading(false);
-        } else {
-          // If data is not available yet, wait for some time and poll again
-          setTimeout(fetchData, 3000); 
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
+const fetchData = () => {
+  fetch('https://yxuanproject.com/api/getalotsensordata')
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        // If response status is 500, wait for some time and poll again
+        setTimeout(fetchData, 3000);
+        throw new Error('API returned HTML');
+      }
+    })
+    .then((data) => {
+      if (data.length > 0) {
+        setData(data);
         setLoading(false);
-      });
-  };
-
-  setLoading(true);
+      } else {
+        // If data is not available yet, wait for some time and poll again
+        setTimeout(fetchData, 3000);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+      setLoading(false);
+    });
+};
+useEffect(() => {
   fetchData();
 }, []);
   useEffect(() => {
