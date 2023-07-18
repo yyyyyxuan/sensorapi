@@ -21,31 +21,26 @@ const Graph: React.FC<GraphProps> = ({ jsonData }) => {
   const [updatedData, setUpdatedData] = useState<any[]>([]);
 //http://localhost:3001/api/getalotsensordata
 //https://yxuanproject.com/api/getalotsensordata
-const fetchData = () => {
-  fetch('https://yxuanproject.com/api/getalotsensordata')
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error('API returned an error');
-      }
-    })
-    .then((data) => {
-      setData(data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      if (error.message === 'API returned an error') {
-        // If API returned an error, wait for some time and poll again
-        setTimeout(fetchData, 3000);
-      } else {
+useEffect(() => {
+  const fetchData = () => {
+    fetch('https://yxuanproject.com/api/getalotsensordata')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.length > 0) {
+          setData(data);
+          setLoading(false);
+        } else {
+          // If data is not available yet, wait for some time and poll again
+          setTimeout(fetchData, 5000); 
+        }
+      })
+      .catch((error) => {
         console.error('Error fetching data:', error);
         setLoading(false);
-      }
-    });
-};
+      });
+  };
 
-useEffect(() => {
+  setLoading(true);
   fetchData();
 }, []);
   useEffect(() => {
@@ -75,6 +70,7 @@ useEffect(() => {
   }
 
   ;
+
   if (data.length === 0) return <div className={styles.loadingDiv}><p><b>No data available</b></p></div>;
 
   
